@@ -14,6 +14,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
 add_executable(CsvToDB
   main.cpp
+  fileprocessor.h fileprocessor.cpp
 )
 target_link_libraries(CsvToDB Qt${QT_VERSION_MAJOR}::Core)
 
