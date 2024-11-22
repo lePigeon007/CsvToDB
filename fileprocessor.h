@@ -2,8 +2,14 @@
 #define FILEPROCESSOR_H
 
 #include <QObject>
-
-class FileProcessorPrivate;
+#include <QDebug>
+#include <QList>
+#include <QDate>
+#include <QDateTime>
+#include <QtSql/QSql>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlDriver>
+#include <QtSql/QSqlError>
 
 class FileProcessor : public QObject
 {
@@ -11,11 +17,21 @@ class FileProcessor : public QObject
 public:
     explicit FileProcessor(QObject *parent = nullptr);
 
+    void fileInput(const QString &filePath);
+    void processLine(const QString & fileLine);
+
 protected:
-    QScopedPointer<privateclass> d_ptr;
+
+signals:
 
 private:
-    Q_DECLARE_PRIVATE(FileProcessor)
+
+    void timeProcessor(const QString &timeStamp, int timeStampFormat);
+
+    QList<QString> m_timeStamp;
+    QList<QString> m_latitude;
+    QList<QString> m_longitude;
+    QList<QString> m_identity;
 };
 
 #endif // FILEPROCESSOR_H
